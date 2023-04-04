@@ -49,12 +49,13 @@ export default function AppTodos() {
   /*--------------- todo 완료 미완료 ------------------------ */
   //
   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!todoList 완료 처리!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-  /*   const handleDone = (todo) => {
+  const handleDone = (todo) => {
     setTodos(
       todos.map((item) =>
-        item.id === todo.id ?  : )}
+        item.id === todo.id ? { ...item, done: !item.done } : item
+      )
     );
- */
+  };
 
   return (
     <Container>
@@ -67,8 +68,8 @@ export default function AppTodos() {
           return (
             <li key={todo.id} done={todo.done}>
               <span
-              /*  style={{ textDecoration: "line-through" }} */
-              /* onClick={() => handleDone(todo)} */
+                style={{ textDecoration: todo.done && "line-through" }}
+                onClick={() => handleDone(todo)}
               >
                 {todo.text}
               </span>
